@@ -5,16 +5,18 @@
   {% csrf_token %}
   {% for field in form %}
   <div class="form-inline form">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       {{ field.label_tag }}
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       {{field}}
     </div>
   </div>
   {% endfor %}
-  <div class="form-group">
-    <input class="btn btn-default" type="submit" value="Ok">
+  <div class="form-inline">
+    <div style="padding-top: 10px" class="col-sm-9 col-sm-offset-3">
+      <input class="btn btn-default" type="submit" value="OK">
+    </div>
   </div>
 </form>
 {% endblock %}

@@ -10,15 +10,15 @@ class LoginForm(Form):
     password = forms.CharField(label='Password')
     __user = None
 
-    def clean(self):
+    def clean_password(self):
         try:
             self.__user = auth.authenticate(username=self.cleaned_data['login'], password=self.cleaned_data['password'])
+            if self.__user is None:
+                raise forms.ValidationError('')
         except:
             raise forms.ValidationError('Invaild login or password')
 
     def auth(self):
-        if not self.__user:
-            self.clean()
         return self.__user
 
 class AskForm(ModelForm):
@@ -49,7 +49,7 @@ class RegistrationForm(Form):
         user.save()
         profile = Profile(user=user, username=self.cleaned_data['username'], avatar=self.cleaned_data['avatar'])
         profile.save()
-        return profile
+        return auth.authenticate(username=self.cleaned_data['login'], password=self.cleaned_data['password'])
 
 class SettingsForm(Form):
     login = forms.CharField(max_length=50)

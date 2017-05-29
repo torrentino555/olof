@@ -20,9 +20,11 @@
     <h4><a href="#">{{question.author.user.username}}</a></h4>
   </div>
 </div>
-<hr>
+{% if comments.count %}
+  <hr>
+{% endif %}
 {% for comment in comments %}
-<div class="row ramk">
+<div class="row comment">
   <div class="col-lg-2 col-md-2 col-sm-2">
     <img src="/{{comment.author.avatar}}" alt="avatar" class="avatar margin-avatar" align="bottom">
     <br clear="left"><i>{{comment.rating}}</i>
@@ -47,9 +49,11 @@
 <div class="col-sm-12">
   <form class="form-horizontal" action="{% url 'question' question.id %}" method="post">
     {% csrf_token %}
-    {{form}}
-    <div class="form-group">
-      <input class="btn btn-default" type="submit" value="Answer">
+    {% for field in form %}
+    {{field}}
+    {% endfor %}
+    <div class="form-inline">
+      <input style="margin-bottom: 5px" class="btn btn-default" type="submit" value="Answer">
     </div>
   </form>
 </div>

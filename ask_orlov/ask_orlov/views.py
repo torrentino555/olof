@@ -59,11 +59,12 @@ def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            f = form.auth()
+            user = form.auth()
             login(request, f)
             return HttpResponseRedirect(request.GET['continue'])
     else:
-        context['form'] = LoginForm()
+        form = LoginForm()
+    context['form'] = form
     return render(request, 'login.html', context)
 
 @login_required
@@ -76,7 +77,8 @@ def signup(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            f = form.save()
+            login(request, f)
             return HttpResponseRedirect(reverse('index'))
     else:
         form = RegistrationForm()

@@ -3,7 +3,16 @@
 <h3 class="header-2">Registration</h3>
 <form class="form-horizontal" action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{form}}
+  {% for field in form %}
+  <div class="form-inline form">
+    <div class="col-sm-3">
+      {{ field.label_tag }}
+    </div>
+    <div class="col-sm-9">
+      {{field}}
+    </div>
+  </div>
+  {% endfor %}
   <!-- <div class="form-inline form">
     <div class="col-sm-4">
       <label for="Login">Login</label>
@@ -53,7 +62,7 @@
     </div>
   </div> -->
   <div class="form-inline">
-    <div class="col-sm-8 col-sm-offset-4">
+    <div class="col-sm-9 col-sm-offset-3">
       <input class="btn btn-default" type="submit" value="Register!">
     </div>
   </div>

@@ -28,7 +28,7 @@ h1, h2 {
 hr {
     border: none;
     color: red;
-    background-color: black;
+    background-color: rgb(208, 208, 208);
     height: 1px;
    }
 
@@ -54,10 +54,13 @@ hr {
     display: inline-block;
 }
 
-.ramk {
-    border: 2px solid black;
-    border-radius: 10px;
+.comment {
+    background: rgb(182, 242, 246);
     margin: 5px;
+}
+
+.question {
+  margin: 5px;
 }
 
 .header {
