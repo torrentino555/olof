@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <!-- Bootstrap -->
+  <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row header">
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <a href="{% url 'index' %}"><img class="cat" src="/img/cat.jpg" vspace="5"></a> </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <form class="form" action="index" method="post">
+          <input style="width:100%" type="text" class="form-control" placeholder="Search">
+        </form>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <a href="{% url 'ask' %}"><button class="btn btn-default" type="button" name="ask">ASK!</button></a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        {% if request.user.is_authenticated %}
+        <div class="user">
+          <img class="avatar" src="/{{user.avatar}}" alt="avatar" hspace="5">
+          <div class="line">{{ user.username }}</div>
+          <br>
+          <div class="line">
+            <a class="ref" href="{% url 'settings' %}">settings</a>
+            <a class="ref" href="{% url 'logout' %}?continue={{request.path}}">log out</a>
+          </div>
+        </div>
+        {% else %}
+        <a class="ref" href="{% url 'login' %}?continue={{request.path}}">log in</a>
+        <a class="ref" href="{% url 'signup' %}">register</a>
+        {% endif %}
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        {% block header %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+      </div>
+      <div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+        <div class="row">
+          <h2>Popular Tag</h2>
+        </div>
+        <div class="row">
+          {% for tag in tags %}
+            <p><a href="{% url 'tag' tag %}">{{ tag }}</a></p>
+          {% endfor %}
+        </div>
+        <div class="row">
+          <h2>Best Members</h2>
+        </div>
+        <div class="row">
+          {% for member in members %}
+            <p><a href="#">{{ member.username }}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% if questions %}
+      {% include 'pagination.html' %}
+    {% endif %}
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </div>
+</body>
+
+</html>

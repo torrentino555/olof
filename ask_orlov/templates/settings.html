@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="header-2">Settings: {{ user.username }}</h3>
+<form class="form-horizontal" action="{% url 'settings' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="form-inline form">
+    <div class="col-sm-4">
+      {{ field.label_tag }}
+    </div>
+    <div class="col-sm-8">
+      {{field}}
+    </div>
+  </div>
+  {% endfor %}
+  <div class="form-group">
+    <input class="btn btn-default" type="submit" value="Ok">
+  </div>
+</form>
+{% endblock %}

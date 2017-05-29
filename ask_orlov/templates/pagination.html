@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-offset-1">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if page_cur > 2 %}
+                <li>
+                    <a href="?page={{page_cur|add:'-2'}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for number in pag_numbers %}
+                  <li><a href="?page={{number}}">{{number}}</a></li>
+                {% endfor %}
+                {% if page_cur < page_last|add:'-2' %}
+                <li>
+                    <a href="?page={{page_cur|add:'2'}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>

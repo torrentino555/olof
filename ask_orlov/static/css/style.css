@@ -1,0 +1,122 @@
+#like {
+    font-size: 1.3em;
+}
+
+.button-ask {
+  padding-left: 15px
+}
+
+body {
+  background: linear-gradient(to bottom, #FFFFFF, #E6E6FA);
+  background-attachment: fixed;
+}
+
+p {
+  overflow-x:hidden;
+}
+
+i {
+    font-size: 1.3em;
+    margin-left: 11px;
+}
+
+h1, h2 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+hr {
+    border: none;
+    color: red;
+    background-color: black;
+    height: 1px;
+   }
+
+.like {
+    margin-left: 6px;
+}
+
+.user {
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+}
+
+.line {
+    display: inline;
+    padding: 10px;
+    line-height: 1.5;
+}
+
+.ref {
+    padding-right: 10px;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.ramk {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.header {
+  margin-top: 10px;
+}
+
+.header-2 {
+    margin-top: 0px;
+    margin-left: 5px;
+    margin-bottom: 30px;
+}
+
+.cat {
+  height: 60px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.margin-avatar {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.big-avatar {
+    width: 100px;
+    height: 100px;
+    margin-top: 0px;
+    margin-right: 5px;
+}
+
+.left {
+    text-align: left;
+}
+
+.form {
+    height: 50px;
+}
+
+.search {
+    top: 15px;
+}
+
+.butt {
+    top: 23px;
+}
+
+.shift {
+    position: relative;
+    top: 180px;
+}
+
+.text-padding {
+    padding: 5px;
+}
+
+#quest li {
+    display: inline;
+}

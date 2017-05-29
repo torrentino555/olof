@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block content %}
+<div class="row">
+  <div class="col-sm-3">
+    <img src="/{{question.author.avatar}}" alt="avatar" class="avatar margin-avatar big-avatar" align="bottom">
+    <br clear="left"><i>{{question.rating}}</i>
+    <div class="like">
+      <span id="like" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+      <span id="like" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <h2>{{question.title}}</h2>
+    <p>{{question.text}}</p>
+    {% if question.tags.count %}
+      Tags:
+      {% for tag in question.tags.all %}
+      <a href="/tag/{{ tag }}" class="ref">{{ tag }}</a>
+      {% endfor %}
+    {% endif %}
+    <h4><a href="#">{{question.author.user.username}}</a></h4>
+  </div>
+</div>
+<hr>
+{% for comment in comments %}
+<div class="row ramk">
+  <div class="col-lg-2 col-md-2 col-sm-2">
+    <img src="/{{comment.author.avatar}}" alt="avatar" class="avatar margin-avatar" align="bottom">
+    <br clear="left"><i>{{comment.rating}}</i>
+    <div class="like">
+      <span id="like" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+      <span id="like" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="col-lg-10 col-md-10 col-sm-10">
+    <h4><a href="#">{{comment.author.user.username}}</a></h4>
+    <p>{{comment.text}}</p>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">Correct!
+      </label>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<hr>
+{% if request.user.is_authenticated %}
+<div class="col-sm-12">
+  <form class="form-horizontal" action="{% url 'question' question.id %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <div class="form-group">
+      <input class="btn btn-default" type="submit" value="Answer">
+    </div>
+  </form>
+</div>
+{% endif %}
+{% endblock %}
