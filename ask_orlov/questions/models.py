@@ -6,7 +6,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     avatar = models.ImageField(upload_to="uploads/")
     username = models.CharField(max_length=50)
     def __unicode__(self):

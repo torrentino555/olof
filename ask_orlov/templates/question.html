@@ -50,10 +50,17 @@
   <form class="form-horizontal" action="{% url 'question' question.id %}" method="post">
     {% csrf_token %}
     {% for field in form %}
-    {{field}}
+    <div class="form-inline form">
+      <div class="col-sm-12">
+        {{field}}
+      </div>
+      {% for error in field.errors %}
+        <span class="help-block col-sm-12">{{error}}</span>
+      {% endfor %}
+    </div>
     {% endfor %}
-    <div class="form-inline">
-      <input style="margin-bottom: 5px" class="btn btn-default" type="submit" value="Answer">
+    <div style="padding: 15px" class="col-sm-12">
+      <input class="btn btn-default" type="submit" value="Answer">
     </div>
   </form>
 </div>

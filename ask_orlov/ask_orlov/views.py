@@ -49,9 +49,10 @@ def question(request, id):
             form.save(context['user'], q)
             return HttpResponseRedirect(reverse('question', args=[id]))
     else:
-        context['question'] = q
-        context['comments'] = Answer.objects.filter(question=q)
-        context['form'] = CommentForm()
+        form = CommentForm()
+    context['question'] = q
+    context['comments'] = Answer.objects.filter(question=q)
+    context['form'] = form
     return render(request, 'question.html', context)
 
 def log_in(request):
@@ -60,7 +61,7 @@ def log_in(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = form.auth()
-            login(request, f)
+            login(request, user)
             return HttpResponseRedirect(request.GET['continue'])
     else:
         form = LoginForm()
@@ -95,7 +96,8 @@ def ask(request):
             print(request.POST['tags'])
             return HttpResponseRedirect(reverse('question', args=[id]))
     else:
-        context['form'] = AskForm()
+        form = AskForm()
+    context['form'] = form
     return render(request, 'ask.html', context)
 
 @login_required
